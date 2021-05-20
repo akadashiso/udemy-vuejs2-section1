@@ -8,6 +8,8 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 </head>
 <body>
+  <!-- リアルDOM -->
+  <a id="google_link">googleへのリンク</a>
 
   <div id="app">
     {{ message }}
@@ -22,10 +24,9 @@
       }
     }
   })
-
-  const html = document.querySelector('html');
-    console.dir(html);
-    console.dir(app);
+  // 直接DOM操作
+  const googleLink = document.getElementById('google_link');
+  googleLink.href = 'https://google.com';
   </script>
 </body>
 </html>
