@@ -6,29 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-    <style>
-      [v-cloak] {
-        display: none;
-      }
-    </style>
+    <style></style>
   </head>
   <body>
-    <div id="app" v-cloak>
-      <div v-cloak>{{ test1 }}</div>
-      <div>{{ test2 }}</div>
+    <button onClick="btnClicked()">クリックしてね</button>
+    <div id="app">
+      <!-- <button id="clickEvent" @click="btnClicked">クリックしてね</button> -->
+      <button @click="btnClicked">クリックしてね</button>
+      <button @click="btnClickedEvent">Eventクリックしてね</button>
+      <button @click="btnClickedArgs(1)">引数クリックしてね</button>
+      <button @click="btnClickedArgsEvent(1, $event)">引数クリックしてね</button>
     </div>
     <script>
-      setTimeout(() => {
-        new Vue({
-          el: "#app",
-          data() {
-            return {
-              test1: "v-cloakあり",
-              test2: "v-cloakなし",
-            };
+      let app = new Vue({
+        el: "#app",
+        data() {
+          return {};
+        },
+        methods: {
+          btnClicked() {
+            console.log("VUE クリックされた");
           },
-        });
-      }, 3000);
+          btnClickedEvent(e) {
+            console.log(e);
+          },
+          btnClickedArgs(int) {
+            console.log(int);
+          },
+          btnClickedArgsEvent(int, e) {
+            console.log(int, e);
+          }
+        },
+      });
+
+      function btnClicked() {
+        console.log("JS クリックされた");
+      }
+
+      const clickEvent = document.getElementById("clickEvent");
+      clickEvent.addEventListener("click", (e) => {
+        console.log(e);
+      });
     </script>
   </body>
 </html>
